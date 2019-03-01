@@ -19,14 +19,12 @@ class HashClass
     #add the new HashItem at the index
     elsif @items[i].nil?
       @items[i] = new_item
-    #If the key of the HashItem at the calculated index == the key provided, update the value of the HashItem
-    #at the index
-    elsif @items[i].key == key
-      @items[i].value = value
     #Otherwise, a collision has occured. Resize the HashClass, calculate the index for @items using the new HashClass.size
     #and set @items at the new index = to the new HashItem
     else
-        self.resize
+        while @items[i] != nil && @items[i].value != value do
+          resize
+        end
         @items[index(key, self.size)] = new_item
     end
   end

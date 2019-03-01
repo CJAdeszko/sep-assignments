@@ -1,0 +1,17 @@
+Explain why doubling the size of the underlying array of your HashClass may be a poor idea.
+Hints:
+
+Doubling the size of the area increased the number of open slots in the array for potential
+values which may lead to more fragmentation.
+
+  Based on my understanding of fragmentation, by doubling the size of the array and recalculating the indices at which
+  data is stored, we would be leaving a number of indices in the underlying array empty. Due to the fact that the data
+  stored in the underlying array are not necessarily adjacent, this increases the possibility of fragmentation because of
+  the likelihood of data exceeding the amount of memory available between the indices of the array which are currently occupied.
+
+
+Doubling the size of an array (allocating memory) is a slow operation.
+
+  When considering the time it takes to allocate memory for an array that has doubled in size, each time a collision
+  occurs and the array is resized, the time it takes to find sufficient memory would increase by a factor of 2. Meaning that,
+  each time the array needs more space, it takes twice as long to find sufficient memory to support the underlying array. 
