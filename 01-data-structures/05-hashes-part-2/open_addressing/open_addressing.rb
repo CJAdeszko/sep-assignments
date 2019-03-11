@@ -1,6 +1,8 @@
 require_relative 'node'
 
 class OpenAddressing
+  attr_accessor :items
+
   def initialize(size)
     @items = Array.new(size)
   end
@@ -8,29 +10,33 @@ class OpenAddressing
 
   def []=(key, value)
 
-    #Variable to hold index for key passed
-    i = index(key, self.size)
+    i = index(key, size)
 
-    #Variable for new node object in @items
     new_node = Node.new(key, value)
 
-    #If there is a collision and the hash is not full, do not resize
-    if (!@items[i].nil? && @items[i].value != value) && next_open_index(i) != -1
-      @items[next_open_index(i)] = new_node
-    #If there is a collision and the hash is full, resize and insert
-    elsif (!@items[i].nil? && @items[i].value != value) && next_open_index(i) == -1
-      resize
-      @items[index(key, self.size)] = new_node
-    else
-      @items[i] = new_node
-    end
+      if @items[i] == nil
+        @items[i] = new_node
+      elsif @items[i].key != key
+        self.resize
+        self[key] = value
+      elsif @items[i].key == key && @items[i].value != value
+        if self.next_open_index(i) == -1
+          self.resize
+          @items[i] = new_node
+        else
+          @items[i] = new_node
+        end
+      end
 
   end
 
 
   def [](key)
     i = index(key, self.size)
-    @items[i].value
+
+    if !@items[i].nil? && @items[i].key == key
+      @items[i].value
+    end
   end
 
 
@@ -44,30 +50,12 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    if @items.size > 1
-      #Variable for portion of array to be searched, starting at provided index
-      sub_array = @items.slice(index..@items.length)
-
-      #Array to hold empty indices, if they exist
-      empty_index = []
-
-      #Iterate through sub-array looking for empty indices
-      sub_array.each_with_index do |val, index|
-        #If the value at the index is empty, add the index to the empty_index array
-        if val.nil?
-          empty_index << index
-        end
+    @items.each_with_index do |item, index|
+      if item.nil?
+        return index
       end
-
-      #If the empty_index array is empty, return -1 because there are no open indices, otherwise, return the first index in empty_index
-      if empty_index.empty?
-        return -1
-      else
-        return empty_index.first
-      end
-    else
-      return -1 #Because next_open_index only called after collision, if @items.size = 1 there can be no open indices, return -1
     end
+    return -1
   end
 
 
@@ -80,19 +68,27 @@ class OpenAddressing
   # Resize the hash
   def resize
     #Create a temp array that is twice the size of the current hash
-    temp_array = Array.new(@items.size * 2)
+    temp_array = @items
+
+    @items = Array.new(self.size * 2)
 
     #Loop over each Node in the @items array
-    @items.each do |item|
+    temp_array.each do |item|
       #If a Node exists, recalculate the index using the larger array size and set temp_array[i] equal to a Node
       #with the key, value pair currently in @items
       if item != nil
-        i = index(item.key, temp_array.size)
-        temp_array[i] = Node.new(item.key, item.value)
+        self[item.key] = item.value
       end
     end
+  end
 
-    #Reassign the value of @items to the resized array
-    @items = temp_array
+  def print
+    @items.each do |item|
+      if !item.nil?
+        i = index(item.key, size)
+        puts "Hash Index: " + i.to_s
+        puts "Key: " + item.key + ", " + "Value: " + item.value
+      end
+    end
   end
 end

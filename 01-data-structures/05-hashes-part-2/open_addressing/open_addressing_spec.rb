@@ -46,6 +46,7 @@ RSpec.describe OpenAddressing, type: Class do
       expect(hash.size).to eq 2
     end
 
+
     it "sets the value of key to value" do
       expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"
