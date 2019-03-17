@@ -67,15 +67,12 @@ class OpenAddressing
 
   # Resize the hash
   def resize
-    #Create a temp array that is twice the size of the current hash
     temp_array = @items
 
     @items = Array.new(self.size * 2)
 
     #Loop over each Node in the @items array
     temp_array.each do |item|
-      #If a Node exists, recalculate the index using the larger array size and set temp_array[i] equal to a Node
-      #with the key, value pair currently in @items
       if item != nil
         self[item.key] = item.value
       end

@@ -77,8 +77,13 @@ class SeparateChaining
 
         temp_array[i] = LinkedList.new if temp_array[i].nil?
 
-        temp_array[i].add_to_tail(Node.new(item.head.key, item.head.value))
-        item.head = item.head.next
+        current_item = item.head
+
+        while current_item
+          temp_array[i].add_to_tail(current_item)
+          current_item = current_item.next
+        end
+
       end
     end
 
@@ -88,10 +93,9 @@ class SeparateChaining
 
   #Prints the current locations and values of the Hash
   def print
-    @items.each do |list|
+    @items.each_with_index do |list, index|
       if !list.nil?
-        i = index(list.head.key, self.size)
-        puts "Hash Index: " + i.to_s
+        puts "Hash Index: " + index.to_s
         list.print
       end
     end
