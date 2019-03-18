@@ -8,43 +8,60 @@ class BinarySearchTree
 
 
   def insert(root, node)
-      if node.title == root.title
-        return root
-      elsif node.rating < root.rating
-        insert(root.left, node)
-      elsif node.rating > root.rating
-        insert(root.right, node)
+    if node.rating < root.rating
+      if root.left.nil?
+        root.left = node
       else
-        return root = Node.new(node.title, node.rating)
+        insert(root.left, node)
       end
-
+    elsif node.rating > root.rating
+      if root.right.nil?
+        root.right = node
+      else
+        insert(root.right, node)
+      end
+    end
   end
 
 
   # Recursive Depth First Search
   def find(root, data)
-    if data.rating == root.rating
+    if root.title == data
       return root
-    elsif data.rating < root.rating
-      find(root.left, data)
-    elsif data.rating > root.rating
-      find(root.right, data)
-    else
+    elsif root.right.nil? && root.left.nil?
       return nil
+    elsif !root.left.nil?
+      if root.left.title == data
+        return root.left
+      else
+        find(root.left, data)
+      end
+    elsif !root.right.nil?
+      if root.right.title == data
+        return root.right
+      else
+        find(root.right, data)
+      end
     end
   end
 
 
   def delete(root, data)
+    #Find node to be deleted
     node = find(root, data)
 
+    #If node exists, either delete or replace with appropriate node
     if !node.nil?
+      #If the node has no children, set node = nil
       if node.left.nil? && node.right.nil?
         node = nil
-      elsif !node.left.nil && node.right.nil?
+      #If the node has a left child but no right child, set node = it's left child
+      elsif !node.left.nil? && node.right.nil?
         node = node.left
-      elsif node.left.nil && !node.right.nil?
+      #If the node has a right child but no left child, set node = it's right child
+      elsif node.left.nil? && !node.right.nil?
         node = node.right
+      #If node has both left and right children, find the min node in the right subtree, replace node with min, remove min
       else
         min_node = find_min_node(node.right)
         node = min_node
@@ -66,5 +83,14 @@ class BinarySearchTree
 
   # Recursive Breadth First Search
   def printf(children=nil)
+    #start at root
+    #if children.nil? start at root
+    #print root_node
+    #print left & right for that node then put their left and right into children then recurse
+
+
+
+
+
   end
 end
