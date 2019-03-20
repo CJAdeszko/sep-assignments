@@ -51,7 +51,7 @@ class BinarySearchTree
     node = find(root, data)
 
     #If node exists, either delete or replace with appropriate node
-    if !node.nil?
+    while !node.nil?
       #If the node has no children, set node = nil
       if node.left.nil? && node.right.nil?
         node = nil
@@ -64,11 +64,12 @@ class BinarySearchTree
       #If node has both left and right children, find the min node in the right subtree, replace node with min, remove min
       else
         min_node = find_min_node(node.right)
-        node = min_node
-        min_node = nil
+        node.title = min_node.title
+        node.rating = min_node.rating
+        min_node = min_node.right
       end
     end
-    node
+    return node
   end
 
 
@@ -88,9 +89,30 @@ class BinarySearchTree
     #print root_node
     #print left & right for that node then put their left and right into children then recurse
 
+    queue = [];
 
+    if !children.nil?
+      queue.push(children)
+    else
+      queue.push(@root_node)
+    end
 
+    while(queue.length > 0)
+      current_node = queue[0]
 
+      if !current_node.left.nil?
+        puts "Adding left child"
+        printf(current_node.left)
+      end
 
+      if !current_node.right.nil?
+        puts "Adding right child"
+        printf(current_node.right)
+      end
+
+      print_node = queue.shift()
+      puts "#{print_node.title}: #{print_node.rating}"
+    end
   end
+
 end
