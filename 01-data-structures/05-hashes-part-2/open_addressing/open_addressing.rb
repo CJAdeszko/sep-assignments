@@ -5,6 +5,7 @@ class OpenAddressing
 
   def initialize(size)
     @items = Array.new(size)
+    @total_nodes = 0
   end
 
 
@@ -14,20 +15,28 @@ class OpenAddressing
 
     new_node = Node.new(key, value)
 
-      if @items[i] == nil
-        @items[i] = new_node
-      elsif @items[i].key != key
+    #If @items at the calculated index is empty, insert the node
+    if @items[i].nil?
+      @items[i] = new_node
+    #If a collision occurs but the keys are not the same, resize the array and insert
+    elsif @items[i].key != key
+      self.resize
+      return self[key] = value
+    #if a collision occurs and the values do not match, look for the next_open_index if it exists and insert
+    #otherwise, resize and insert
+    elsif @items[i].key == key && @items[i].value != value
+      new_index = next_open_index(i)
+      if new_index == -1
+        puts "array full resizing"
         self.resize
-        self[key] = value
-      elsif @items[i].key == key && @items[i].value != value
-        if self.next_open_index(i) == -1
-          self.resize
-          @items[i] = new_node
-        else
-          @items[i] = new_node
-        end
+        return self[key] = value
+      else
+        @items[new_index] = new_node
       end
+    end
 
+    #Keep count of total nodes for load_factor calculation
+    @total_nodes += 1
   end
 
 
@@ -48,11 +57,19 @@ class OpenAddressing
   end
 
 
+  # Calculate the current load factor
+  def load_factor
+    @total_nodes.to_f/ self.size.to_f
+  end
+
+
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    @items.each_with_index do |item, index|
-      if item.nil?
+    while index < @items.length
+      if @items[index].nil?
         return index
+      else
+        index += 1
       end
     end
     return -1
@@ -70,6 +87,7 @@ class OpenAddressing
     temp_array = @items
 
     @items = Array.new(self.size * 2)
+    @total_nodes = 0
 
     #Loop over each Node in the @items array
     temp_array.each do |item|
@@ -79,13 +97,15 @@ class OpenAddressing
     end
   end
 
+
   def print
-    @items.each do |item|
+    @items.each_with_index do |item, index|
       if !item.nil?
-        i = index(item.key, size)
-        puts "Hash Index: " + i.to_s
+        puts "Hash Index: " + index.to_s
         puts "Key: " + item.key + ", " + "Value: " + item.value
       end
     end
+    puts "Total_Nodes: " + @total_nodes.to_s
+    puts "Load_Factor: " + self.load_factor.to_s
   end
 end

@@ -17,14 +17,18 @@ class SeparateChaining
     #Variable to hold new Node object for LinkedList
     new_node = Node.new(key, value)
 
+    #If array at index is empty, initialize a new LinkedList
     if @items[i].nil?
       @items[i] = LinkedList.new
     end
 
     #Add a new Node to the LinkedList
     @items[i].add_to_tail(new_node)
+
+    #Keep count of total nodes for load_factor calculation
     @total_nodes += 1
 
+    #If load_factor exceeds max_load_factor, resize
     if self.load_factor > @max_load_factor
       resize
     end
