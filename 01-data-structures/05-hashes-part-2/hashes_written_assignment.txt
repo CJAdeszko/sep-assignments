@@ -1,0 +1,55 @@
+Alternative Collision Resolution Strategies:
+
+1) Extendible Hashing
+
+Based on my understanding of extendible hashing, the technique utilizes the binary value of Keys in order to store values.
+A significant number of bits are used to hash similar Keys to a location in the data structure.
+Each of these buckets contain multiple values based on the bits that were used for hashing.
+If the bucket overflows, that particular bucket is re-hashed using a new number of significant bits as the Key.
+In this manner, only certain buckets need to be re-hashed when a collision occurs rather than the entire hash
+as in Separate Chaining or Open Addressing.
+
+2) Nested Hash Tables
+
+The idea of nested hash tables relies on the idea of independent hashing functions. If a Key is hashed to an empty bucket,
+it is simply placed into that bucket using the original hashing function. However, if a collision occurs
+(i.e. there is already at least one entry in the bucket), the key will be inserted into another hash table
+where it’s location is determined by a second hashing function. This process of nesting hashes is repeated until
+an empty bucket is found.
+
+3) Pseudo-random probing
+
+The idea of pseudo-random probing is that, while searching for an open index in which to place a key,
+the function would probe randomly from the unvisited indices in the underlying array. However, the next position cannot be
+truly random so, in order to create a duplicatable probe sequence, a permutation of the of the values based on the size of
+the array and the index value is used.
+
+
+Create a Collision Resolution Strategy
+
+My idea for a collision resolution strategy involves hashing keys based on the size of the array and, when a collision occurs,
+check the indices immediately surrounding the hashed index for space. The maximum distance away from the calculated index is
+two indices (above/below so i-2 or i+2), if there is no space within two indices of the calculated index, double the size of
+the array and re-hash the keys. If a collision occurs, always insert at the nearest index starting with the smaller index.
+Using this collision resolution strategy, we need only look at a maximum of 5 indices before inserting or resizing rather
+than the entire underlying array. In theory, this could lead to fairly large arrays and have poor performance.  
+
+Ex.
+
+Hash function - x % 7
+
+Hash = [ nil, nil, nil, nil, nil, nil, nil, ]
+
+h(10) = [ nil, nil, nil, 10, nil, nil, nil, ]
+
+h(13) = [ nil, nil, nil, 10, nil, nil, 13, ]
+
+h(11) = [ nil, nil, nil, 10, 11, nil, 13, ]
+
+h(3) = [ nil, nil, nil, 10, 11, nil, 13, ] => collision at index 3, check index 2 and 4, index 2 open, insert => [ nil, nil, 3, 10, 11, nil, 13, ]
+
+h(8) = [ nil, 8, 3, 10, 11, nil, 13, ]
+
+h(5) =  [ nil, 8, 3, 10, 11, nil, 13, ] => collision at index 2, check index index 1 and 3, no space, check index 0 and 4, index 0 open, insert =>  [ 5, 8, 3, 10, 11, nil, 13, ]
+
+h(14) =  [ 5, 8, 3, 10, 11, nil, 13, ]  => collision at index 0, check index 1 and 2, no space, double size of array and rehash => [ 14, 13, nil, 11, 10, nil, 8, nil, nil, 5, nil, 3, nil, nil ]
