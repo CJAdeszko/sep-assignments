@@ -3,7 +3,7 @@ require_relative 'node'
 class BinarySearchTree
 
   def initialize(root)
-    @root_node = Node.new(root.title, root.rating)
+    @root_node = root
   end
 
 
@@ -30,17 +30,20 @@ class BinarySearchTree
       return root
     elsif root.right.nil? && root.left.nil?
       return nil
-    elsif !root.left.nil?
-      if root.left.title == data
-        return root.left
-      else
-        find(root.left, data)
+    else
+      if !root.left.nil?
+        if root.left.title == data
+          return root.left
+        else
+          return find(root.left, data)
+        end
       end
-    elsif !root.right.nil?
-      if root.right.title == data
-        return root.right
-      else
-        find(root.right, data)
+      if !root.right.nil?
+        if root.right.title == data
+          return root.right
+        else
+          return find(root.right, data)
+        end
       end
     end
   end
@@ -50,26 +53,26 @@ class BinarySearchTree
     #Find node to be deleted
     node = find(root, data)
 
-    #If node exists, either delete or replace with appropriate node
-    while !node.nil?
-      #If the node has no children, set node = nil
-      if node.left.nil? && node.right.nil?
-        node = nil
-      #If the node has a left child but no right child, set node = it's left child
-      elsif !node.left.nil? && node.right.nil?
-        node = node.left
-      #If the node has a right child but no left child, set node = it's right child
-      elsif node.left.nil? && !node.right.nil?
-        node = node.right
-      #If node has both left and right children, find the min node in the right subtree, replace node with min, remove min
+    return nil if root.nil? || node.nil?
+
+    if node.rating < root.rating
+      root.left = self.delete(root.left, data)
+    elsif node.rating > root.rating
+      root.right = self.delete(root.right, data)
+    else
+      if root.left.nil? && root.right.nil?
+        root = nil
+      elsif root.left.nil?
+        root = root.right
+      elsif root.right.nil?
+        root = root.left
       else
-        min_node = find_min_node(node.right)
-        node.title = min_node.title
-        node.rating = min_node.rating
-        min_node = min_node.right
+        temp_node = find_min_node(root.right)
+        root = temp_node
+        root.right = delete(root.right, temp_node.title)
       end
     end
-    return node
+    return root
   end
 
 
@@ -84,35 +87,26 @@ class BinarySearchTree
 
   # Recursive Breadth First Search
   def printf(children=nil)
-    #start at root
-    #if children.nil? start at root
-    #print root_node
-    #print left & right for that node then put their left and right into children then recurse
+    new_children = [];
 
-    queue = [];
-
-    if !children.nil?
-      queue.push(children)
-    else
-      queue.push(@root_node)
+    if children.nil?
+      children = [@root_node]
     end
 
-    while(queue.length > 0)
-      current_node = queue[0]
+    while children.length > 0
+      current_node = children.shift
 
       if !current_node.left.nil?
-        puts "Adding left child"
-        printf(current_node.left)
+        new_children.push(current_node.left)
       end
 
       if !current_node.right.nil?
-        puts "Adding right child"
-        printf(current_node.right)
+        new_children.push(current_node.right)
       end
-
-      print_node = queue.shift()
-      puts "#{print_node.title}: #{print_node.rating}"
+      puts "#{current_node.title}: #{current_node.rating}"
     end
+
+    self.printf(new_children) if new_children.length > 0
   end
 
 end
