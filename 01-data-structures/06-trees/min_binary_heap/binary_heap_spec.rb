@@ -21,20 +21,20 @@ RSpec.describe MinBinaryHeap, type: Class do
   describe "#insert(data)" do
     it "properly inserts a new node as a left child" do
       tree.insert(root, pacific_rim)
-      expect(root.left.title).to eq "The Matrix"
+      expect(tree.heap[0].left.title).to eq "The Matrix"
     end
 
     it "properly inserts a new node as a right child" do
       tree.insert(root, braveheart)
       tree.insert(root, pacific_rim)
-      expect(root.right.title).to eq "The Matrix"
+      expect(tree.heap[0].right.title).to eq "Braveheart"
     end
 
     it "properly inserts a new node as a left-left child" do
       tree.insert(root, donnie)
       tree.insert(root, inception)
       tree.insert(root, district)
-      expect(root.left.left.title).to eq "District 9"
+      expect(tree.heap[0].left.left.title).to eq "District 9"
     end
 
     it "properly inserts a new node as a left-right child" do
@@ -42,7 +42,7 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, inception)
       tree.insert(root, district)
       tree.insert(root, shawshank)
-      expect(root.left.right.title).to eq "The Shawshank Redemption"
+      expect(tree.heap[0].left.right.title).to eq "The Shawshank Redemption"
     end
 
     it "properly inserts a new node as a right-left child" do
@@ -51,7 +51,7 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, district)
       tree.insert(root, shawshank)
       tree.insert(root, martian)
-      expect(root.right.left.title).to eq "The Martian"
+      expect(tree.heap[0].right.left.title).to eq "The Martian"
     end
 
     it "properly inserts a new node as a right-right child" do
@@ -61,7 +61,7 @@ RSpec.describe MinBinaryHeap, type: Class do
       tree.insert(root, shawshank)
       tree.insert(root, martian)
       tree.insert(root, mad_max_2)
-      expect(root.right.right.title).to eq "Mad Max 2: The Road Warrior"
+      expect(tree.heap[0].right.right.title).to eq "Mad Max 2: The Road Warrior"
     end
   end
 
@@ -180,7 +180,7 @@ RSpec.describe MinBinaryHeap, type: Class do
 
   describe "#print(root)" do
      specify {
-       expected_output = "Pacific Rim: 72\nBraveheart: 78\nStar Wars: Return of the Jedi: 80\nInception: 86\nThe Matrix: 87\nDistrict 9: 90\nThe Shawshank Redemption: 91\nThe Martian: 92\nStar Wars: A New Hope: 93\nStar Wars: The Empire Strikes Back: 94\nMad Max 2: The Road Warrior: 98\n"
+       expected_output = "Pacific Rim: 72\nBraveheart: 78\nStar Wars: Return of the Jedi: 80\nThe Matrix: 87\nDistrict 9: 90\nStar Wars: The Empire Strikes Back: 94\nInception: 86\nStar Wars: A New Hope: 93\nThe Shawshank Redemption: 91\nThe Martian: 92\nMad Max 2: The Road Warrior: 98\n"
        tree.insert(root, hope)
        tree.insert(root, empire)
        tree.insert(root, jedi)
@@ -195,7 +195,7 @@ RSpec.describe MinBinaryHeap, type: Class do
      }
 
      specify {
-       expected_output = "Pacific Rim: 72\nBraveheart: 78\nStar Wars: Return of the Jedi: 80\nInception: 86\nThe Matrix: 87\nDistrict 9: 90\nThe Shawshank Redemption: 91\nThe Martian: 92\nStar Wars: A New Hope: 93\nStar Wars: The Empire Strikes Back: 94\nMad Max 2: The Road Warrior: 98\n"
+       expected_output = "Pacific Rim: 72\nStar Wars: Return of the Jedi: 80\nBraveheart: 78\nThe Matrix: 87\nThe Shawshank Redemption: 91\nDistrict 9: 90\nInception: 86\nMad Max 2: The Road Warrior: 98\nThe Martian: 92\nStar Wars: The Empire Strikes Back: 94\nStar Wars: A New Hope: 93\n"
        tree.insert(root, mad_max_2)
        tree.insert(root, district)
        tree.insert(root, shawshank)
