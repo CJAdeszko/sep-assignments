@@ -6,7 +6,7 @@ class BinarySearchTree
     @root_node = root
   end
 
-
+=begin
   def insert(root, node)
     if node.rating < root.rating
       if root.left.nil?
@@ -22,7 +22,28 @@ class BinarySearchTree
       end
     end
   end
+=end
 
+def insert(root, node)
+  do_continue = true
+  while do_continue
+    if node.rating < root.rating
+      if root.left.nil?
+        root.left = node
+        do_continue = false
+      else
+        root = root.left
+      end
+    elsif node.rating > root.rating
+      if root.right.nil?
+        root.right = node
+        do_continue = false
+      else
+        root = root.right
+      end
+    end
+  end
+end
 
   # Recursive Depth First Search
   def find(root, data)
