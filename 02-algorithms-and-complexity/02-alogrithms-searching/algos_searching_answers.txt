@@ -1,0 +1,37 @@
+1. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G
+using linear search?
+
+  7
+
+2. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G
+using binary search?
+
+  3
+
+3.Calculate fib(10), fib(11), fib(12) by hand.
+
+  fib(10) = (0, 1, 1, 2, 3, 5, 8, 13)           21 + 34 = 55
+  fib(11) = (0, 1, 1, 2, 3, 5, 8, 13, 21)       34 + 55 = 89
+  fib(12) = (0, 1, 1, 2, 3, 5, 8, 13, 21, 34)   55 + 89 = 144
+
+4. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search?
+Would you use an iterative or recursive solution? Explain your reasoning.
+
+  Iterative linear search because a stipulation of using binary search is that the collection must first be sorted. Additionally,
+  because the collection is unsorted, the item being searched for could appear anywhere in the collection, therefore an iterative
+  search could yield a quicker return because the location of the element is unknown. (i.e. the search only requires the minimum number
+  of iterations to reach the element O(n) so if it is the first element we only need one iteration.)
+
+5. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search?
+Would you use an iterative or recursive solution? Explain your reasoning.
+
+  Iterative binary search because the collection is sorted so binary search will [potentially] require less iterations
+  through the collection. I would personally use an iterative approach because the definition is more explicit and easier
+  to understand in code and in my research there seems to be very little performance benefit to using recursive binary
+  search in *most* situations.
+
+6. Compare the time it takes to run fib(20) between the iterative solution from the previous checkpoint and recursive solutions.
+
+                          user     system      total        real
+fibonacci_iterative:   0.000000   0.000000   0.000000 (  0.000018)
+fibonacci_recursive:   0.000000   0.000000   0.000000 (  0.000014)
