@@ -1,0 +1,64 @@
+Everyday Pseudocode
+
+1. Making Eggs
+
+  OBTAIN bowl from cabinet
+  OBTAIN pan from cabinet
+  OBTAIN eggs from fridge
+
+  CRACK eggs into bowl
+
+  HEAT pan on stove
+
+  IF making scrambled eggs
+    OBTAIN whisk from drawer
+    WHISK eggs
+    RETURN
+  ENDIF
+
+  IF pan has reached temperature
+    ADD eggs to pan
+    IF making scrambled eggs
+      STIR eggs until set
+      REMOVE from heat
+    ELSE
+      COOK eggs until set
+      REMOVE from heat
+    ENDIF
+  ENDIF
+
+  2. Brushing Teeth
+
+    OBTAIN toothbrush
+    OBTAIN toothpaste
+    TURN ON faucet
+    RINSE toothbrush
+    TURN OFF faucet
+    APPLY toothpaste
+    TURN ON toothbrush
+    WHILE toothbrush is on
+      brush teeth
+    END WHILE
+    RINSE toothbrush
+
+  3. Work on Bloc assignments
+
+    OBTAIN computer
+    OPEN computer
+    READ checkpoint
+    START assignment
+    WHILE working on assignment
+      REPEAT
+        struggle
+        Google
+        struggle
+        have mental breakdown
+        eat
+        go to gym
+        struggle
+        re-evaluate life
+        contact technical coaches
+        struggle
+      UNTIL complete
+    ENDWHILE
+    RETURN assignment
