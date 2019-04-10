@@ -1,0 +1,66 @@
+1. Print to Console:
+
+  BinarySearchTree
+
+    The Matrix: 87
+    Star Wars: Return of the Jedi: 80
+    Star Wars: A New Hope: 93
+    Pacific Rim: 72
+    Inception: 86
+    The Martian: 92
+    Star Wars: The Empire Strikes Back: 94
+    Braveheart: 78
+    The Shawshank Redemption: 91
+    Mad Max 2: The Road Warrior: 98
+    District 9: 90
+
+  MinBinaryHeap
+
+    Pacific Rim: 72
+    Braveheart: 78
+    Star Wars: Return of the Jedi: 80
+    The Matrix: 87
+    District 9: 90
+    Star Wars: The Empire Strikes Back: 94
+    Inception: 86
+    Star Wars: A New Hope: 93
+    The Shawshank Redemption: 91
+    The Martian: 92
+    Mad Max 2: The Road Warrior: 98
+
+
+2.
+
+  Insert 1-10,000:
+
+                      user     system      total        real
+binary_search_tree: 638.330000 9.090000 647.420000 (705.750446)
+min_binary_heap:    0.130000   0.010000   0.140000 (  0.149197)
+
+  1 Insertion:
+                      user     system      total        real
+binary_search_tree:  0.000000   0.000000   0.000000 (  0.000012)
+min_binary_heap:     0.000000   0.000000   0.000000 (  0.000026)
+
+  Find 50,000:
+                        user     system      total        real
+binary_search_tree_find:0.000000   0.000000   0.000000 (  0.000024)
+min_binary_heap_find:   0.000000   0.000000   0.000000 (  0.005539)
+
+  Delete:
+                            user     system      total        real
+binary_search_tree_delete:0.000000   0.000000   0.000000 (  0.000019)
+min_binary_heap_delete:   0.010000   0.000000   0.010000 (  0.000496)
+
+
+When would you use a Binary Search Tree and why?
+
+  Binary Search Trees are useful for keeping data sorted when it is constantly changing. Because of the properties of a BST, it
+  it is ideal for cases when data needs to be searched efficiently, such as with binary search, but also needs the ability to
+  insert new data and delete old data. In these circumstances, a BST is a better data structure choice than a simple array. 
+
+When would you use an Heap and why?
+
+  Heaps are useful for implementing priority queues. Because of the properties of a heap, it is an ideal data structure for
+  implementing a queue that needs to not only follow the first in, first out property, but also assigns a priority to the
+  data contained in the queue. This can be used in job scheduling and managing requests.

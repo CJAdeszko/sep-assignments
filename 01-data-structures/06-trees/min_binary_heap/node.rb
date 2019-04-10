@@ -10,4 +10,10 @@ class Node
     @left = nil
     @right = nil
   end
+
+  def has_children?
+    if !@left.nil? || !@right.nil?
+      return true
+    end
+  end
 end
