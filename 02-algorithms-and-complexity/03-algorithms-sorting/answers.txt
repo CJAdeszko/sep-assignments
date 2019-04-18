@@ -1,0 +1,18 @@
+                  user     system      total        real
+quicksort:      0.000000   0.000000   0.000000 (  0.000047)
+heap_sort:      0.000000   0.000000   0.000000 (  0.000253)
+bucket_sort:    0.000000   0.000000   0.000000 (  0.000100)
+
+
+Looking at the bar chart, speculate on why you think some sort algorithms are faster than others
+and provide rationale as to your thought process.
+
+I believe that some sort algorithms are faster than other because of the number of iterations/steps it takes
+to first prepare the data to be sorted. By this I mean that, for quicksort, no preparation is necessary and the
+algorithm immediately begins sorting the collection provided. However, for heap sort and bucket sort, additional
+steps are necessary. In heap sort, the collection must first be turned into a heap, then it must satisfy the
+characteristics of a max heap, then sorting can begin. Each time an item is sorted, the algorithm must again check that
+the max heap characteristics are satisfied. This requires additional time compared to quicksort. In addition, bucket sort
+requires to layers of sorting. First, items must be sorted into buckets, then the buckets most be sorted using another sorting
+algorithm or calling bucket sort recursively. These nested sorts require additional time to complete. It seems that the more
+steps necessary to prepare data for sorting, the longer the algorithm will take.
