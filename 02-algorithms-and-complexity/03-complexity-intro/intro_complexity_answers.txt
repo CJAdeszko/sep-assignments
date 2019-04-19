@@ -1,0 +1,36 @@
+1. Describe an analogy for relating an algorithm that has efficiency O(1) and another algorithm that has O(2n).
+
+  O(1) - Tesla Roadster
+  O(2n) - Nissan Leaf
+
+2. In plain English, what is the best case scenario for binary search?
+
+3. In plain English, what is the worst-case scenario for binary search?
+
+4. In plain English, what is the bounded-case scenario for binary search?
+
+5. What is the limit of the function above as n approaches infinity?
+
+  infinity
+
+6. What is the Big-O of an algorithm that has the data points above?
+
+  O(2^n)
+
+7. Write a Ruby method that takes a number n. This method must print the worst-case number of iterations
+for linear search to find an item in collections of size one to n.
+Use it to generate a table of worst-case iterations of collections up to size 10.
+Create a graph from the output using Google Sheets or other graphing software.
+Analyze the graph and denote its Big-O somewhere on the graph.
+
+8. What is the Big-O of binary search?
+
+  O(log n)
+
+9. What is the Big-Ω of binary search?
+
+  O(1)
+
+10. What is the Big-Ө of binary search?
+
+  O(log n)
