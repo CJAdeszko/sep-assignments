@@ -5,10 +5,16 @@
 
 2. In plain English, what is the best case scenario for binary search?
 
+  The item we are searching for is the first item the algorithm checks.
+
 3. In plain English, what is the worst-case scenario for binary search?
+
+  The algorithm has to look at half of the items in the data.
 
 4. In plain English, what is the bounded-case scenario for binary search?
 
+  The algorithm has to look at more than one item but less than half of the items.
+  
 5. What is the limit of the function above as n approaches infinity?
 
   infinity
