@@ -1,17 +1,14 @@
-require_relative 'data.rb'
-
 def find_kevin_bacon(node, path = [])
-  return "Too many films to bring home the Bacon" if path.length > 6
+  return "Too many films to bring home the Bacon" if path.length == 6
 
   if node.name == "Kevin Bacon"
-    return "Found Kevin Bacon"
+    return "This is Kevin Bacon"
   else
     actor_with_most_films = nil
     for film, actors in node.film_actor_hash
       for actor in actors
         if actor.name == "Kevin Bacon"
           path << film
-          puts "Found Kevin Bacon"
           return path
         else
           if (actor_with_most_films.nil? || actor.film_actor_hash.length > actor_with_most_films["actor"].film_actor_hash.length) && actor.searched_flag == false
