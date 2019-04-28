@@ -55,7 +55,7 @@ What's the Big-O of the following algorithm? Submit your work and reasoning with
      end
     end
 
-  O(n log n) - the amount of time it takes the algorithm to execute grows with the number of recursive calls to the function
+  O(2^n) - the amount of time it takes the algorithm to execute grows with the number of recursive calls to the function
   as the number passed in grows
 
   0 => 0
@@ -150,3 +150,5 @@ What's the Big-O of the following algorithm? Submit your work and reasoning with
 
    collection
   end
+
+  O(n log n)
