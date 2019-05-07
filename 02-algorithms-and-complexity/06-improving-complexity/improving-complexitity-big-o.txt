@@ -1,0 +1,16 @@
+1. Version One Big 0
+
+  O(n^2) - The algorithm has to look at all values within the combined array and compare them to all values within the
+  sorted array resulting in a big-O of O(n^2).
+
+2. Version Two Big O
+
+  O(n^2) - The Ruby sort! method compares all values using quicksort with the <=> operator. Although it has the same Big-O as
+  the first version, it's performance is better than the implementation in version one in terms of time.
+
+3. Version Three Big O
+
+  O(n^2) - This version still uses Ruby sort! method, however, by calling sort! on a chained call of flatten on the arrays passed
+  as arguments to the method, we save space in memory by not creating a new empty array in which to hold the values of the
+  arrays that were passed.
+  
