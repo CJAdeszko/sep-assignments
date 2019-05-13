@@ -38,9 +38,8 @@
      largest
     end
 
-    O(n^2) - the amount of time it takes for the algorithm to execute grows with both collection sizes - i.e as the collection
-    of arrays grows in length the time it takes to execute increases linearly. Additionally, as the size of the array at each index of the
-    collection increases, the time needed to execute increases linearly again.
+    O(n) - Because the algorithm does work on a 2D array, there are two loops. However, a comparison is only made once
+    for each item in the collection resulting in a O(n) complexity. 
 
 
 4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
@@ -150,4 +149,4 @@ num(1) num(0)
   end
 
   O(n log n) - As the function is called, the amount of data required to sort is cut by about half on each recursive call leading
-  me to believe that there is a time complexity of O(n log n). 
+  me to believe that there is a time complexity of O(n log n).
